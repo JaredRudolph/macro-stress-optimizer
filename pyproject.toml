@@ -1,0 +1,23 @@
+[project]
+name = "market-data-pipeline"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "loguru>=0.7.3",
+    "pandas>=3.0.1",
+    "python-dotenv>=1.2.2",
+    "yfinance>=1.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.11.0",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "ruff>=0.15.5",
+]
+
+[tool.ruff]
+line-length = 88
