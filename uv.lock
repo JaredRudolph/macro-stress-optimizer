@@ -309,7 +309,7 @@ wheels = [
 ]
 
 [[package]]
-name = "market-data-pipeline"
+name = "macro-stress-pipeline"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
