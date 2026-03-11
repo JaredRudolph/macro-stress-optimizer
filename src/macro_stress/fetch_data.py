@@ -9,7 +9,9 @@ load_dotenv()
 
 
 def fetch_market_data(tickers: list[str], start: str, end: str) -> pd.DataFrame:
-    return yf.download(tickers, start=start, end=end, auto_adjust=True)["Close"]
+    return yf.download(tickers, start=start, end=end, auto_adjust=True, progress=False)[
+        "Close"
+    ]
 
 
 def fetch_fred_data(series_ids: list[str]) -> pd.DataFrame:
