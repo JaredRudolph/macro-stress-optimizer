@@ -15,6 +15,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "ipykernel>=7.2.0",
     "ipython>=9.11.0",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
@@ -30,3 +31,6 @@ packages = ["src/macro_stress"]
 
 [tool.ruff]
 line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
