@@ -1,11 +1,8 @@
 import os
-import yfinance as yf
+
 import pandas as pd
+import yfinance as yf
 from fredapi import Fred
-from dotenv import load_dotenv
-
-
-load_dotenv()
 
 
 def fetch_market_data(tickers: list[str], start: str, end: str) -> pd.DataFrame:
@@ -22,3 +19,22 @@ def fetch_fred_data(series_ids: list[str]) -> pd.DataFrame:
     fred = Fred(api_key=api_key)
 
     return pd.DataFrame({sid: fred.get_series(sid) for sid in series_ids})
+
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+
+    from macro_stress.pipeline import (
+        FRED_SERIES,
+        MARKET_TICKERS,
+        START_DATE,
+        get_end_date,
+    )
+
+    load_dotenv()
+
+    df_market = fetch_market_data(MARKET_TICKERS, START_DATE, get_end_date())
+    df_fred = fetch_fred_data(FRED_SERIES)
+
+    print(df_market.head(10))
+    print(df_fred.head(10))
