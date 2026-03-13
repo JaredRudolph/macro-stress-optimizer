@@ -26,6 +26,9 @@ Thumbs.db
 # Jupyter
 .ipynb_checkpoints/
 
+# Ruff
+.ruff_cache/
+
 # Logs
 *.log
 
