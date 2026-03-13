@@ -25,7 +25,7 @@ MARKET_TICKERS = [
     "GLD",  # Gold (for ratio)
     "XLK",  # Tech ETF (for ratio)
     "XLV",  # Healthcare ETF (for ratio)
-    "DX-Y.NYB",  # DXY dollar index
+    "DX=F",  # DXY dollar index futures, more reliable than DX-Y.NYB
     "USDCNY=X",  # USD/CNY
 ]
 
@@ -34,8 +34,10 @@ FRED_SERIES = [
     "ICSA",  # initial jobless claims
     "CPIAUCSL",  # CPI
     "DRCCLACBS",  # credit card delinquency rate
-    "USSLIND",  # leading economic index
+    "USALOLITOAASTSAM",  # Leading Indicators OECD
 ]
+
+RAW_PATH = Path("data/raw")
 
 OUTPUT_PATH = Path("data/processed/stress_score.parquet")
 
@@ -47,7 +49,12 @@ def run(start: str = START_DATE, end: str = None) -> pd.DataFrame:
     df_market = fetch_market_data(MARKET_TICKERS, start, end)
 
     logger.info("Fetching FRED data")
-    df_fred = fetch_fred_data(FRED_SERIES)
+    df_fred = fetch_fred_data(FRED_SERIES, start, end)
+
+    RAW_PATH.mkdir(parents=True, exist_ok=True)
+    df_market.to_csv(RAW_PATH / "market_raw.csv")
+    df_fred.to_csv(RAW_PATH / "fred_raw.csv")
+    logger.info("Saved raw data to data/raw/")
 
     logger.info("Merging and aligning data")
     df_merged = merge_all(df_market, df_fred)
