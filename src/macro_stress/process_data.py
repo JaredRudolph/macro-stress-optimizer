@@ -8,7 +8,6 @@ def resample_fred(df_fred: pd.DataFrame) -> pd.DataFrame:
 def compute_ratios(df_market: pd.DataFrame) -> pd.DataFrame:
     ratios = pd.DataFrame(index=df_market.index)
     ratios["VIX_VIX3M"] = df_market["^VIX"] / df_market["^VIX3M"]
-    ratios["HYG_LQD"] = df_market["HYG"] / df_market["LQD"]
     ratios["GLD_SPY"] = df_market["GLD"] / df_market["SPY"]
     ratios["XLK_XLV"] = df_market["XLK"] / df_market["XLV"]
     return ratios
