@@ -20,8 +20,6 @@ MARKET_TICKERS = [
     "^VIX",  # VIX
     "^VIX3M",  # VIX 3-month (for ratio)
     "^SKEW",  # SKEW index
-    "HYG",  # High yield bonds (for ratio)
-    "LQD",  # Investment grade bonds (for ratio)
     "GLD",  # Gold (for ratio)
     "XLK",  # Tech ETF (for ratio)
     "XLV",  # Healthcare ETF (for ratio)
@@ -35,6 +33,7 @@ FRED_SERIES = [
     "CPIAUCSL",  # CPI
     "DRCCLACBS",  # credit card delinquency rate
     "USALOLITOAASTSAM",  # Leading Indicators OECD
+    "BAMLH0A0HYM2",  # ICE BofA US High Yield Index Option-Adjusted Spread
 ]
 
 RAW_PATH = Path("data/raw")
