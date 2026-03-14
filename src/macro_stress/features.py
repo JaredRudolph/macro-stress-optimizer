@@ -27,8 +27,12 @@ FRED_SCORE_COLS = [
 
 SCORE_COLS = MARKET_SCORE_COLS + FRED_SCORE_COLS
 
+ROLLING_WINDOW_DAYS = 756
 
-def rolling_percentile_rank(series: pd.Series, window: int = 756) -> pd.Series:
+
+def rolling_percentile_rank(
+    series: pd.Series, window: int = ROLLING_WINDOW_DAYS
+) -> pd.Series:
     return series.rolling(window).apply(lambda x: (x < x[-1]).mean(), raw=True)
 
 
@@ -37,6 +41,10 @@ def flip_direction(series: pd.Series) -> pd.Series:
 
 
 def compute_stress_score(df: pd.DataFrame) -> pd.DataFrame:
+    required = set(SCORE_COLS) | {"SPY"}
+    missing = required - set(df.columns)
+    if missing:
+        raise KeyError(f"compute_stress_score: missing columns: {sorted(missing)}")
     ranked = {}
     for col in SCORE_COLS:
         ranked_col = rolling_percentile_rank(df[col])
