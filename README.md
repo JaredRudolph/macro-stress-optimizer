@@ -87,7 +87,7 @@ uv run ruff format .   # format
 ## Architecture
 
 ```
-fetch_data.py    →    process_data.py    →    features.py    →    pipeline.py
+fetch_data.py    ->    process_data.py    ->    features.py    ->    pipeline.py
 yfinance + FRED       merge, resample,        rolling pct rank,   orchestration,
                       compute ratios          composite score     parquet output
 ```
