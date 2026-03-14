@@ -5,7 +5,13 @@ def resample_fred(df_fred: pd.DataFrame) -> pd.DataFrame:
     return df_fred.resample("D").last().ffill()
 
 
+RATIO_INPUTS = {"^VIX", "^VIX3M", "GLD", "SPY", "XLK", "XLV"}
+
+
 def compute_ratios(df_market: pd.DataFrame) -> pd.DataFrame:
+    missing = RATIO_INPUTS - set(df_market.columns)
+    if missing:
+        raise KeyError(f"compute_ratios: missing columns: {sorted(missing)}")
     ratios = pd.DataFrame(index=df_market.index)
     ratios["VIX_VIX3M"] = df_market["^VIX"] / df_market["^VIX3M"]
     ratios["GLD_SPY"] = df_market["GLD"] / df_market["SPY"]
@@ -37,7 +43,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     df_market = fetch_market_data(MARKET_TICKERS, START_DATE, get_end_date())
-    df_fred = fetch_fred_data(FRED_SERIES)
+    df_fred = fetch_fred_data(FRED_SERIES, START_DATE, get_end_date())
     df = merge_all(df_market, df_fred)
 
     print(df.head())
