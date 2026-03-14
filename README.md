@@ -2,7 +2,7 @@
 
 A data pipeline that ingests macro and market data, computes a composite financial stress score, and writes the result to parquet for downstream analysis.
 
-The score is a rolling percentile rank (3-year window) averaged across 13 indicators, normalized so that **1.0 = maximum stress**. It is descriptive, not predictive — useful for contextualizing market conditions against historical stress levels.
+The score is a rolling percentile rank (3-year window) averaged across 13 indicators, normalized so that **1.0 = maximum stress**. It is descriptive, not predictive. Useful for contextualizing market conditions against historical stress levels.
 
 ## Indicators
 
@@ -20,7 +20,7 @@ The score is a rolling percentile rank (3-year window) averaged across 13 indica
 **Macro (FRED)**
 | Series | Indicator |
 |---|---|
-| `T10Y2Y` | Yield curve spread (10Y–2Y) |
+| `T10Y2Y` | Yield curve spread (10Y-2Y) |
 | `ICSA` | Initial jobless claims |
 | `CPIAUCSL` | CPI |
 | `DRCCLACBS` | Credit card delinquency rate |
@@ -52,9 +52,9 @@ uv run main.py
 ```
 
 Outputs:
-- `data/raw/market_raw.csv` — raw yfinance closes
-- `data/raw/fred_raw.csv` — raw FRED series
-- `data/processed/stress_score.parquet` — scored output with all ranked indicators and SPY
+- `data/raw/market_raw.csv`: raw yfinance closes
+- `data/raw/fred_raw.csv`: raw FRED series
+- `data/processed/stress_score.parquet`: scored output with all ranked indicators and SPY
 
 ## Analysis
 
@@ -68,7 +68,7 @@ Outputs:
 
 ![Stress score vs SPY drawdown](docs/stress_vs_drawdown.png)
 
-**Indicator breakdown — most recent observation**
+**Indicator breakdown: most recent observation**
 
 ![Indicator breakdown](docs/indicator_breakdown.png)
 
