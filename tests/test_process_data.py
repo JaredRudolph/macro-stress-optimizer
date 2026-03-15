@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from macro_stress.process_data import compute_ratios, merge_all, resample_fred
+from macro_stress_pipeline.process_data import compute_ratios, merge_all, resample_fred
 
 
 def make_market_df(n=20):
