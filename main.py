@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-from macro_stress.pipeline import run
+from macro_stress_pipeline.pipeline import run
 
 load_dotenv()
 
