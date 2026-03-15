@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from macro_stress.features import (
+from macro_stress_pipeline.features import (
     FLIP_COLS,
     SCORE_COLS,
     compute_stress_score,
