@@ -39,9 +39,18 @@ def make_fred_df(n=800):
 
 def test_run_returns_dataframe(tmp_path):
     with (
-        patch("macro_stress_pipeline.pipeline.fetch_market_data", return_value=make_market_df()),
-        patch("macro_stress_pipeline.pipeline.fetch_fred_data", return_value=make_fred_df()),
-        patch("macro_stress_pipeline.pipeline.OUTPUT_PATH", tmp_path / "stress_score.parquet"),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_market_data",
+            return_value=make_market_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_fred_data",
+            return_value=make_fred_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.OUTPUT_PATH",
+            tmp_path / "stress_score.parquet",
+        ),
         patch("macro_stress_pipeline.pipeline.RAW_PATH", tmp_path / "raw"),
     ):
         result = run()
@@ -51,9 +60,18 @@ def test_run_returns_dataframe(tmp_path):
 
 def test_run_output_has_expected_columns(tmp_path):
     with (
-        patch("macro_stress_pipeline.pipeline.fetch_market_data", return_value=make_market_df()),
-        patch("macro_stress_pipeline.pipeline.fetch_fred_data", return_value=make_fred_df()),
-        patch("macro_stress_pipeline.pipeline.OUTPUT_PATH", tmp_path / "stress_score.parquet"),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_market_data",
+            return_value=make_market_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_fred_data",
+            return_value=make_fred_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.OUTPUT_PATH",
+            tmp_path / "stress_score.parquet",
+        ),
         patch("macro_stress_pipeline.pipeline.RAW_PATH", tmp_path / "raw"),
     ):
         result = run()
@@ -65,8 +83,14 @@ def test_run_output_has_expected_columns(tmp_path):
 def test_run_writes_parquet(tmp_path):
     out = tmp_path / "stress_score.parquet"
     with (
-        patch("macro_stress_pipeline.pipeline.fetch_market_data", return_value=make_market_df()),
-        patch("macro_stress_pipeline.pipeline.fetch_fred_data", return_value=make_fred_df()),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_market_data",
+            return_value=make_market_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_fred_data",
+            return_value=make_fred_df(),
+        ),
         patch("macro_stress_pipeline.pipeline.OUTPUT_PATH", out),
         patch("macro_stress_pipeline.pipeline.RAW_PATH", tmp_path / "raw"),
     ):
@@ -78,9 +102,18 @@ def test_run_writes_parquet(tmp_path):
 def test_run_writes_raw_csvs(tmp_path):
     raw = tmp_path / "raw"
     with (
-        patch("macro_stress_pipeline.pipeline.fetch_market_data", return_value=make_market_df()),
-        patch("macro_stress_pipeline.pipeline.fetch_fred_data", return_value=make_fred_df()),
-        patch("macro_stress_pipeline.pipeline.OUTPUT_PATH", tmp_path / "stress_score.parquet"),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_market_data",
+            return_value=make_market_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.fetch_fred_data",
+            return_value=make_fred_df(),
+        ),
+        patch(
+            "macro_stress_pipeline.pipeline.OUTPUT_PATH",
+            tmp_path / "stress_score.parquet",
+        ),
         patch("macro_stress_pipeline.pipeline.RAW_PATH", raw),
     ):
         run()
