@@ -1,8 +1,8 @@
-# macro-stress-pipeline
+# macro-stress-ml
 
-A data pipeline that ingests macro and market data, computes a composite financial stress score, and writes the result to parquet for downstream analysis.
+A macro financial stress pipeline with an ML weight optimizer. The pipeline ingests market and FRED data, computes a composite stress score across 13 indicators, and writes the result to parquet. The optimizer learns per-indicator weights that maximize AUC between the weighted stress score and realized SPY drawdown labels.
 
-The score is a rolling percentile rank (3-year window) averaged across 13 indicators, normalized so that **1.0 = maximum stress**. It is descriptive, not predictive. Useful for contextualizing market conditions against historical stress levels.
+The stress score is descriptive, not predictive. Optimized weights improve historical fit; they are not a trading signal.
 
 ## Indicators
 
@@ -27,13 +27,33 @@ The score is a rolling percentile rank (3-year window) averaged across 13 indica
 | `USALOLITOAASTSAM` | OECD Leading Indicators |
 | `BAMLH0A0HYM2` | ICE BofA HY OAS spread |
 
+## Architecture
+
+```
+Pipeline
+  fetch_data.py      pulls yfinance + FRED
+  process_data.py    merges, resamples, computes ratios
+  features.py        rolling percentile rank, direction flip, composite score
+  pipeline.py        orchestration, writes stress_score.parquet
+
+        |
+        | data/processed/stress_score.parquet
+        v
+
+ML
+  labels.py          derives binary SPY drawdown labels from parquet
+  optimizer.py       SLSQP weight optimization, alpha sweep, CV evaluation
+```
+
+Both packages are installed from `src/` via `pyproject.toml`. The ML package does not import from the pipeline package; the parquet file is the only interface.
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/your-username/macro-stress-pipeline.git
-cd macro-stress-pipeline
+git clone https://github.com/your-username/macro-stress-ml.git
+cd macro-stress-ml
 uv sync
 ```
 
@@ -47,6 +67,8 @@ Get a key at [fred.stlouisfed.org](https://fred.stlouisfed.org/docs/api/api_key.
 
 ## Usage
 
+**Run the pipeline** (fetches data, writes parquet):
+
 ```bash
 uv run main.py
 ```
@@ -54,11 +76,20 @@ uv run main.py
 Outputs:
 - `data/raw/market_raw.csv`: raw yfinance closes
 - `data/raw/fred_raw.csv`: raw FRED series
-- `data/processed/stress_score.parquet`: scored output with all ranked indicators and SPY
+- `data/processed/stress_score.parquet`: stress score with all ranked indicators and SPY
 
-## Analysis
+**Run the optimizer** (requires pipeline output):
 
-`notebooks/analysis.ipynb` visualizes the pipeline output. Run the pipeline first to generate `data/processed/stress_score.parquet`, then open the notebook in Jupyter or VS Code and run all cells.
+```bash
+uv run optimize.py
+```
+
+Outputs:
+- `data/processed/optimized_weights.json`: per-indicator weights, equal-weight AUC, optimized AUC
+
+## Notebooks
+
+`notebooks/stress_score_eda.ipynb` visualizes the pipeline output. Run the pipeline first, then open in Jupyter or VS Code.
 
 **Stress score vs SPY**
 
@@ -76,18 +107,12 @@ Outputs:
 
 ![Individual indicators](docs/indicator_grid.png)
 
+`notebooks/weight_optimizer.ipynb` covers the full ML workflow: label construction, SLSQP optimization, alpha sweep via cross-validation, weight stability, ROC curves, and optimized score visualization.
+
 ## Development
 
 ```bash
 uv run pytest          # run tests
 uv run ruff check .    # lint
 uv run ruff format .   # format
-```
-
-## Architecture
-
-```
-fetch_data.py    ->    process_data.py    ->    features.py    ->    pipeline.py
-yfinance + FRED       merge, resample,        rolling pct rank,   orchestration,
-                      compute ratios          composite score     parquet output
 ```
