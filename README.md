@@ -109,6 +109,26 @@ Outputs:
 
 `notebooks/weight_optimizer.ipynb` covers the full ML workflow: label construction, SLSQP optimization, alpha sweep via cross-validation, weight stability, ROC curves, and optimized score visualization.
 
+**Optimized vs equal-weight indicator weights**
+
+![Weight stability](docs/weight_stability.png)
+
+**ROC curves: equal weight vs optimized**
+
+![ROC curves](docs/roc_curves.png)
+
+**Optimized stress score vs SPY drawdown**
+
+![Optimized score vs drawdown](docs/optimized_vs_drawdown.png)
+
+**Optimized vs equal-weight score overlaid on SPY**
+
+![Optimized vs equal weight vs SPY](docs/optimized_vs_equalweight_spy.png)
+
+**Optimized vs equal-weight score overlaid on SPY drawdown**
+
+![Optimized vs equal weight vs drawdown](docs/optimized_vs_equalweight_drawdown.png)
+
 ## Development
 
 ```bash
