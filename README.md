@@ -117,10 +117,6 @@ Outputs:
 
 ![ROC curves](docs/roc_curves.png)
 
-**Optimized stress score vs SPY drawdown**
-
-![Optimized score vs drawdown](docs/optimized_vs_drawdown.png)
-
 **Optimized vs equal-weight score overlaid on SPY**
 
 ![Optimized vs equal weight vs SPY](docs/optimized_vs_equalweight_spy.png)
