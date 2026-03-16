@@ -1075,7 +1075,7 @@ dev = [
     { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "ipython", specifier = ">=9.11.0" },
     { name = "matplotlib", specifier = ">=3.10.8" },
-    { name = "nbstripout", specifier = ">=0.8.1" },
+    { name = "nbstripout", specifier = ">=0.9.1" },
     { name = "notebook", specifier = ">=7.5.5" },
     { name = "pre-commit", specifier = ">=4.5.1" },
     { name = "pytest", specifier = ">=9.0.2" },
