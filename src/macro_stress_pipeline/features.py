@@ -2,26 +2,37 @@ import pandas as pd
 
 FLIP_COLS = {
     "XLK_XLV",
+    "TLT",
+    "HG=F",
+    "EEM",
     "T10Y2Y",
+    "T10Y3M",
+    "T30Y10Y",
     "USALOLITOAASTSAM",
+    "UMCSENT",
+    "PERMIT",
+    "NEWORDER",
 }
 
 MARKET_SCORE_COLS = [
-    "^VIX",
-    "VIX_VIX3M",
-    "^SKEW",
-    "GLD_SPY",
-    "DX=F",
-    "USDCNY=X",
     "XLK_XLV",
+    "TLT",
+    "HG=F",
+    "CL=F",
+    "EEM",
+    "DX=F",
 ]
 
 FRED_SCORE_COLS = [
     "T10Y2Y",
+    "T10Y3M",
+    "T30Y10Y",
     "ICSA",
-    "CPIAUCSL",
     "DRCCLACBS",
     "USALOLITOAASTSAM",
+    "UMCSENT",
+    "PERMIT",
+    "NEWORDER",
     "BAMLH0A0HYM2",
 ]
 
