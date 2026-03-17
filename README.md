@@ -11,7 +11,7 @@ The stress score is a forward-looking risk indicator built from indicators with 
 |---|---|
 | `T10Y2Y` | 10Y-2Y Treasury spread |
 | `T10Y3M` | 10Y-3M Treasury spread |
-| `T30Y10Y` | 30Y-10Y Treasury spread |
+| `T30Y10Y` | 30Y-10Y Treasury spread (computed: `DGS30 - DGS10`) |
 
 **Macro leading (FRED)**
 | Series | Indicator |
