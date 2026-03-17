@@ -11,14 +11,13 @@ def make_market_df(n=800):
     rng = np.random.default_rng(42)
     tickers = [
         "SPY",
-        "^VIX",
-        "^VIX3M",
-        "^SKEW",
-        "GLD",
         "XLK",
         "XLV",
+        "TLT",
+        "HG=F",
+        "CL=F",
+        "EEM",
         "DX=F",
-        "USDCNY=X",
     ]
     return pd.DataFrame({t: rng.random(n) * 100 for t in tickers}, index=idx)
 
@@ -28,10 +27,15 @@ def make_fred_df(n=800):
     rng = np.random.default_rng(42)
     series = [
         "T10Y2Y",
+        "T10Y3M",
+        "DGS30",
+        "DGS10",
         "ICSA",
-        "CPIAUCSL",
         "DRCCLACBS",
         "USALOLITOAASTSAM",
+        "UMCSENT",
+        "PERMIT",
+        "NEWORDER",
         "BAMLH0A0HYM2",
     ]
     return pd.DataFrame({s: rng.random(n) for s in series}, index=idx)
