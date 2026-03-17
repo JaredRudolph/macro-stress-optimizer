@@ -1,31 +1,42 @@
 # macro-stress-ml
 
-A macro financial stress pipeline with an ML weight optimizer. The pipeline ingests market and FRED data, computes a composite stress score across 13 indicators, and writes the result to parquet. The optimizer learns per-indicator weights that maximize AUC between the weighted stress score and realized SPY drawdown labels.
+A macro financial stress pipeline with an ML weight optimizer. The pipeline ingests market and FRED data, computes a composite stress score across 16 leading indicators, and writes the result to parquet. The optimizer learns per-indicator weights that maximize AUC between the weighted stress score and realized SPY drawdown labels.
 
-The stress score is descriptive, not predictive. Optimized weights improve historical fit; they are not a trading signal.
+The stress score is a forward-looking risk indicator built from indicators with demonstrated leading properties. Reactive and coincident indicators (VIX, SKEW, CPI, USD/CNY, gold/equity ratio) were excluded. Optimized weights improve historical fit; they are not a trading signal.
 
 ## Indicators
+
+**Yield curve (FRED)**
+| Series | Indicator |
+|---|---|
+| `T10Y2Y` | 10Y-2Y Treasury spread |
+| `T10Y3M` | 10Y-3M Treasury spread |
+| `T30Y10Y` | 30Y-10Y Treasury spread |
+
+**Macro leading (FRED)**
+| Series | Indicator |
+|---|---|
+| `USALOLITOAASTSAM` | OECD composite leading indicator |
+| `UMCSENT` | University of Michigan consumer sentiment |
+| `PERMIT` | Building permits |
+| `NEWORDER` | Manufacturers new orders |
+
+**Labor and credit (FRED)**
+| Series | Indicator |
+|---|---|
+| `ICSA` | Initial jobless claims |
+| `DRCCLACBS` | Credit card delinquency rate |
+| `BAMLH0A0HYM2` | ICE BofA HY OAS spread |
 
 **Market (yfinance)**
 | Ticker | Indicator |
 |---|---|
-| `^VIX` | VIX |
-| `^VIX` / `^VIX3M` | Near-term fear ratio |
-| `^SKEW` | Tail risk demand |
-| `GLD` / `SPY` | Risk-off ratio |
-| `DX=F` | DXY dollar index |
-| `USDCNY=X` | USD/CNY |
 | `XLK` / `XLV` | Tech vs defensive rotation |
-
-**Macro (FRED)**
-| Series | Indicator |
-|---|---|
-| `T10Y2Y` | Yield curve spread (10Y-2Y) |
-| `ICSA` | Initial jobless claims |
-| `CPIAUCSL` | CPI |
-| `DRCCLACBS` | Credit card delinquency rate |
-| `USALOLITOAASTSAM` | OECD Leading Indicators |
-| `BAMLH0A0HYM2` | ICE BofA HY OAS spread |
+| `TLT` | Long-duration Treasury ETF |
+| `HG=F` | Copper futures (growth proxy) |
+| `CL=F` | Crude oil futures (rate-of-change; dual stress regime) |
+| `EEM` | Emerging markets ETF |
+| `DX=F` | DXY dollar index |
 
 ## Architecture
 
