@@ -5,7 +5,10 @@ def resample_fred(df_fred: pd.DataFrame) -> pd.DataFrame:
     return df_fred.resample("D").last().ffill()
 
 
-RATIO_INPUTS = {"^VIX", "^VIX3M", "GLD", "SPY", "XLK", "XLV"}
+RATIO_INPUTS = {"XLK", "XLV"}
+
+# 21 trading days (~1 month): CL=F is used as rate of change, not price level
+CL_ROC_WINDOW = 21
 
 
 def compute_ratios(df_market: pd.DataFrame) -> pd.DataFrame:
@@ -13,8 +16,6 @@ def compute_ratios(df_market: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise KeyError(f"compute_ratios: missing columns: {sorted(missing)}")
     ratios = pd.DataFrame(index=df_market.index)
-    ratios["VIX_VIX3M"] = df_market["^VIX"] / df_market["^VIX3M"]
-    ratios["GLD_SPY"] = df_market["GLD"] / df_market["SPY"]
     ratios["XLK_XLV"] = df_market["XLK"] / df_market["XLV"]
     return ratios
 
@@ -26,6 +27,8 @@ def merge_all(df_market: pd.DataFrame, df_fred: pd.DataFrame) -> pd.DataFrame:
     combined = df_market.join(df_fred_daily, how="left")
     combined = combined.join(ratios, how="left", rsuffix="_ratio")
     combined = combined.ffill()
+    combined["T30Y10Y"] = combined["DGS30"] - combined["DGS10"]
+    combined["CL=F"] = combined["CL=F"].pct_change(CL_ROC_WINDOW)
     return combined
 
 
