@@ -8,7 +8,8 @@ from macro_stress_pipeline.fetch_data import fetch_fred_data, fetch_market_data
 from macro_stress_pipeline.process_data import merge_all
 
 # START_DATE chosen based on availability of Index/Ticker data
-START_DATE = "2008-01-01"
+# (EEM started on 2003-04-14)
+START_DATE = "2003-04-14"
 
 
 def get_end_date() -> str:
@@ -17,22 +18,26 @@ def get_end_date() -> str:
 
 MARKET_TICKERS = [
     "SPY",  # S&P 500 (overlay only)
-    "^VIX",  # VIX
-    "^VIX3M",  # VIX 3-month (for ratio)
-    "^SKEW",  # SKEW index
-    "GLD",  # Gold (for ratio)
     "XLK",  # Tech ETF (for ratio)
     "XLV",  # Healthcare ETF (for ratio)
-    "DX=F",  # DXY dollar index futures, more reliable than DX-Y.NYB
-    "USDCNY=X",  # USD/CNY
+    "TLT",  # 20Y Treasury ETF
+    "HG=F",  # Copper futures
+    "CL=F",  # Crude oil futures (used as 21-day ROC)
+    "EEM",  # Emerging markets ETF
+    "DX=F",  # DXY dollar index futures
 ]
 
 FRED_SERIES = [
     "T10Y2Y",  # yield curve spread (10Y-2Y)
+    "T10Y3M",  # yield curve spread (10Y-3M)
+    "DGS30",  # 30Y constant maturity (used to compute T30Y10Y spread)
+    "DGS10",  # 10Y constant maturity (used to compute T30Y10Y spread)
     "ICSA",  # initial jobless claims
-    "CPIAUCSL",  # CPI
     "DRCCLACBS",  # credit card delinquency rate
     "USALOLITOAASTSAM",  # Leading Indicators OECD
+    "UMCSENT",  # University of Michigan Consumer Sentiment
+    "PERMIT",  # building permits
+    "NEWORDER",  # manufacturers new orders
     "BAMLH0A0HYM2",  # ICE BofA US High Yield Index Option-Adjusted Spread
 ]
 
