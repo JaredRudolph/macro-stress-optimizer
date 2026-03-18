@@ -78,16 +78,30 @@ Get a key at [fred.stlouisfed.org](https://fred.stlouisfed.org/docs/api/api_key.
 
 ## Usage
 
+**Full pipeline** (fetches data, computes stress score, runs optimizer):
+
 ```bash
 uv run main.py
 ```
 
-Runs the full pipeline: fetches market and FRED data, computes the stress score, then runs the weight optimizer. Outputs:
+**Optimizer only** (requires existing `data/processed/stress_score.parquet`):
+
+```bash
+uv run optimize.py
+# or, after uv sync installs the package:
+stress-optimize
+```
+
+Outputs:
 
 - `data/raw/market_raw.csv`: raw yfinance closes
 - `data/raw/fred_raw.csv`: raw FRED series
 - `data/processed/stress_score.parquet`: stress score with all ranked indicators and SPY
-- `data/processed/optimized_weights.json`: per-indicator weights, equal-weight AUC, optimized AUC
+- `data/processed/optimized_weights.json`: per-indicator weights, AUC comparison, and run metadata
+
+## Results
+
+On 5,000+ trading days (2006-2026), SLSQP improves mean CV test AUC from **0.838** (equal weights) to **0.853** (optimized, alpha=3.0) on a 5-fold time series split. The improvement is intentionally modest — L2 regularization toward equal weights prevents overfitting to specific stress regimes on a single 20-year timeline with sparse drawdown events (~26% of trading days). The optimized weights are descriptive: they reflect which indicators historically led SPY drawdowns, not a forward-looking signal.
 
 ## Notebooks
 
