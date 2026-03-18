@@ -78,18 +78,9 @@ Get a key at [fred.stlouisfed.org](https://fred.stlouisfed.org/docs/api/api_key.
 
 ## Usage
 
-**Full pipeline** (fetches data, computes stress score, runs optimizer):
-
 ```bash
-uv run main.py
-```
-
-**Optimizer only** (requires existing `data/processed/stress_score.parquet`):
-
-```bash
-uv run optimize.py
-# or, after uv sync installs the package:
-stress-optimize
+uv run stress-pipeline   # fetch data, compute stress score
+uv run stress-optimize   # read parquet, optimize weights
 ```
 
 Outputs:
