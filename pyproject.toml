@@ -16,6 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
+stress-pipeline = "macro_stress_pipeline.pipeline:main"
 stress-optimize = "macro_stress_ml.optimizer:run"
 
 [dependency-groups]
