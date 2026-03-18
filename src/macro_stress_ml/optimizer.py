@@ -157,6 +157,7 @@ def optimize_weights(
 def run(
     parquet_path: Path = PARQUET_PATH,
     output_path: Path = OUTPUT_PATH,
+    alphas: list[float] = None,
 ) -> dict:
     """Load stress_score.parquet, optimize weights, write optimized_weights.json."""
     logger.info(f"Loading {parquet_path}")
@@ -170,7 +171,7 @@ def run(
         f" {y.sum()} drawdown days ({y.mean():.1%})"
     )
 
-    result = optimize_weights(X, y)
+    result = optimize_weights(X, y, alphas=alphas)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
