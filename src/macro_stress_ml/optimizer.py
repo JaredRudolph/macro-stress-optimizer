@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -172,6 +173,13 @@ def run(
     )
 
     result = optimize_weights(X, y, alphas=alphas)
+    result["meta"] = {
+        "data_start": str(X.index[0].date()),
+        "data_end": str(X.index[-1].date()),
+        "n_rows": len(X),
+        "drawdown_threshold": DRAWDOWN_THRESHOLD,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
