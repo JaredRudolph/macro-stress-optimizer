@@ -78,24 +78,15 @@ Get a key at [fred.stlouisfed.org](https://fred.stlouisfed.org/docs/api/api_key.
 
 ## Usage
 
-**Run the pipeline** (fetches data, writes parquet):
-
 ```bash
 uv run main.py
 ```
 
-Outputs:
+Runs the full pipeline: fetches market and FRED data, computes the stress score, then runs the weight optimizer. Outputs:
+
 - `data/raw/market_raw.csv`: raw yfinance closes
 - `data/raw/fred_raw.csv`: raw FRED series
 - `data/processed/stress_score.parquet`: stress score with all ranked indicators and SPY
-
-**Run the optimizer** (requires pipeline output):
-
-```bash
-uv run optimize.py
-```
-
-Outputs:
 - `data/processed/optimized_weights.json`: per-indicator weights, equal-weight AUC, optimized AUC
 
 ## Notebooks
