@@ -73,9 +73,12 @@ def run(start: str = START_DATE, end: str = None) -> pd.DataFrame:
     return df_scored
 
 
-if __name__ == "__main__":
+def main():
     from dotenv import load_dotenv
 
     load_dotenv()
-
     run()
+
+
+if __name__ == "__main__":
+    main()
