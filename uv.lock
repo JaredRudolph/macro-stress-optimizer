@@ -1037,6 +1037,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fredapi" },
+    { name = "joblib" },
     { name = "loguru" },
     { name = "pandas" },
     { name = "pyarrow" },
@@ -1061,6 +1062,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fredapi", specifier = ">=0.5.2" },
+    { name = "joblib", specifier = ">=1.4.0" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "pandas", specifier = ">=3.0.1" },
     { name = "pyarrow", specifier = ">=23.0.1" },
