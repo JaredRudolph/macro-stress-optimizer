@@ -1,4 +1,4 @@
-# macro-stress-ml
+# macro-stress-optimizer
 
 A macro financial stress pipeline with an ML weight optimizer. The pipeline ingests market and FRED data, computes a composite stress score across 16 leading indicators, and writes the result to parquet. The optimizer learns per-indicator weights that maximize AUC between the weighted stress score and realized SPY drawdown labels.
 
@@ -63,8 +63,8 @@ Both packages are installed from `src/` via `pyproject.toml`. The ML package doe
 Requires [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/your-username/macro-stress-ml.git
-cd macro-stress-ml
+git clone https://github.com/your-username/macro-stress-optimizer.git
+cd macro-stress-optimizer
 uv sync
 ```
 
