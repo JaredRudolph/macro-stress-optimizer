@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from macro_stress_ml.labels import compute_drawdown_labels
+from macro_stress_optimizer.labels import compute_drawdown_labels
 
 
 def make_spy(values, start="2020-01-01"):

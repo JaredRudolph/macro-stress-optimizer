@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from macro_stress_ml.optimizer import INDICATOR_COLS, optimize_weights, run
+from macro_stress_optimizer.optimizer import INDICATOR_COLS, optimize_weights, run
 
 
 @pytest.fixture
