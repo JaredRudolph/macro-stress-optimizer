@@ -1,6 +1,8 @@
 # macro-stress-optimizer
 
-A macro financial stress pipeline with an ML weight optimizer. The pipeline ingests market and FRED data, computes a composite stress score across 16 leading indicators, and writes the result to parquet. The optimizer learns per-indicator weights that maximize AUC between the weighted stress score and realized SPY drawdown labels.
+This project extends [macro-stress-pipeline](https://github.com/your-username/macro-stress-pipeline) with a machine learning layer. The pipeline package (`macro_stress_pipeline`) is inherited unchanged from that project. This repo adds the ML package (`macro_stress_optimizer`), which learns per-indicator weights that maximize AUC between a weighted composite stress score and realized SPY drawdown labels.
+
+The pipeline ingests market and FRED data, computes a composite stress score across 16 leading indicators, and writes the result to parquet. The ML layer reads that parquet and replaces the equal-weight average with data-driven weights via SLSQP optimization.
 
 The stress score is a forward-looking risk indicator built from indicators with demonstrated leading properties. Reactive and coincident indicators (VIX, SKEW, CPI, USD/CNY, gold/equity ratio) were excluded. Optimized weights improve historical fit; they are not a trading signal.
 
