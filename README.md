@@ -41,17 +41,16 @@ The stress score is a forward-looking risk indicator built from indicators with 
 ## Architecture
 
 ```
-Pipeline
+Pipeline ──────────────────────────────────────────
   fetch_data.py      pulls yfinance + FRED
   process_data.py    merges, resamples, computes ratios
   features.py        rolling percentile rank, direction flip, composite score
   pipeline.py        orchestration, writes stress_score.parquet
 
-        |
-        | data/processed/stress_score.parquet
-        v
-
-ML
+                     data/processed/stress_score.parquet
+                                      │
+                                      ▼
+ML ────────────────────────────────────────────────
   labels.py          derives binary SPY drawdown labels from parquet
   optimizer.py       SLSQP weight optimization, alpha sweep, CV evaluation
 ```
