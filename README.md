@@ -141,6 +141,6 @@ On 5,000+ trading days (2006-2026), SLSQP improves mean CV test AUC from **0.838
 
 ```bash
 uv run pytest          # run tests
-uv run ruff check .    # lint
 uv run ruff format .   # format
+uv run ruff check .    # lint
 ```
