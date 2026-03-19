@@ -117,6 +117,10 @@ On 5,000+ trading days (2006-2026), SLSQP improves mean CV test AUC from **0.838
 
 `notebooks/weight_optimizer.ipynb` covers the full ML workflow: label construction, SLSQP optimization, alpha sweep via cross-validation, weight stability, ROC curves, and optimized score visualization.
 
+**Alpha sweep: test AUC and generalization gap vs regularization strength**
+
+![Alpha sweep](docs/alpha_sweep.png)
+
 **Optimized vs equal-weight indicator weights**
 
 ![Weight stability](docs/weight_stability.png)
