@@ -17,7 +17,7 @@ def make_market_df(n=800):
         "HG=F",
         "CL=F",
         "EEM",
-        "DX=F",
+        "DX-Y.NYB",
     ]
     return pd.DataFrame({t: rng.random(n) * 100 for t in tickers}, index=idx)
 
@@ -36,7 +36,7 @@ def make_fred_df(n=800):
         "UMCSENT",
         "PERMIT",
         "NEWORDER",
-        "BAMLH0A0HYM2",
+        "DBAA",
     ]
     return pd.DataFrame({s: rng.random(n) for s in series}, index=idx)
 
