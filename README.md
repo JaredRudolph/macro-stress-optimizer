@@ -1,5 +1,7 @@
 # macro-stress-optimizer
 
+**Part 2 of 3:** [macro-stress-pipeline](https://github.com/JaredRudolph/macro-stress-pipeline) | macro-stress-optimizer | [macro-stress-forecaster](https://github.com/JaredRudolph/macro-stress-forecaster)
+
 This project extends [macro-stress-pipeline](https://github.com/JaredRudolph/macro-stress-pipeline) with a machine learning layer. The pipeline package (`macro_stress_pipeline`) is inherited unchanged from that project. This repo adds the ML package (`macro_stress_optimizer`), which learns per-indicator weights that maximize AUC between a weighted composite stress score and realized SPY drawdown labels.
 
 The pipeline ingests market and FRED data, computes a composite stress score across 16 leading indicators, and writes the result to parquet. The ML layer reads that parquet and replaces the equal-weight average with data-driven weights via SLSQP optimization.
