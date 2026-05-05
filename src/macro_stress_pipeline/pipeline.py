@@ -24,7 +24,7 @@ MARKET_TICKERS = [
     "HG=F",  # Copper futures
     "CL=F",  # Crude oil futures (used as 21-day ROC)
     "EEM",  # Emerging markets ETF
-    "DX=F",  # DXY dollar index futures
+    "DX-Y.NYB",  # DXY dollar index
 ]
 
 FRED_SERIES = [
@@ -38,7 +38,7 @@ FRED_SERIES = [
     "UMCSENT",  # University of Michigan Consumer Sentiment
     "PERMIT",  # building permits
     "NEWORDER",  # manufacturers new orders
-    "BAMLH0A0HYM2",  # ICE BofA US High Yield Index Option-Adjusted Spread
+    "DBAA",  # Moody's Baa corporate bond yield (used to compute BAA_SPREAD)
 ]
 
 RAW_PATH = Path("data/raw")
