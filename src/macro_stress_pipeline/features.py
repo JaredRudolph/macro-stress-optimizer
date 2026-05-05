@@ -20,7 +20,7 @@ MARKET_SCORE_COLS = [
     "HG=F",
     "CL=F",
     "EEM",
-    "DX=F",
+    "DX-Y.NYB",
 ]
 
 FRED_SCORE_COLS = [
@@ -33,7 +33,7 @@ FRED_SCORE_COLS = [
     "UMCSENT",
     "PERMIT",
     "NEWORDER",
-    "BAMLH0A0HYM2",
+    "BAA_SPREAD",
 ]
 
 SCORE_COLS = MARKET_SCORE_COLS + FRED_SCORE_COLS
