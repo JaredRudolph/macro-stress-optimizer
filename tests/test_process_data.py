@@ -15,7 +15,7 @@ def make_market_df(n=30):
             "HG=F": 4.0,
             "CL=F": 70.0,
             "EEM": 45.0,
-            "DX=F": 103.0,
+            "DX-Y.NYB": 103.0,
         },
         index=idx,
     )
@@ -28,6 +28,7 @@ def make_fred_df():
             "T10Y2Y": [0.5, 0.4, 0.3, 0.2, 0.1, 0.0],
             "DGS30": [2.5, 2.4, 2.3, 2.2, 2.1, 2.0],
             "DGS10": [2.0, 1.9, 1.8, 1.7, 1.6, 1.5],
+            "DBAA": [5.0, 4.9, 4.8, 4.7, 4.6, 4.5],
         },
         index=idx,
     )
@@ -76,10 +77,11 @@ def test_merge_all_contains_expected_columns():
         "HG=F",
         "CL=F",
         "EEM",
-        "DX=F",
+        "DX-Y.NYB",
         "XLK_XLV",
         "T10Y2Y",
         "T30Y10Y",
+        "BAA_SPREAD",
     ]:
         assert col in result.columns, f"Missing column: {col}"
 
@@ -92,6 +94,7 @@ def test_merge_all_no_nans_after_first_fred_observation():
             "T10Y2Y": [0.5, 0.4, 0.3, 0.2, 0.1, 0.0],
             "DGS30": [2.5, 2.4, 2.3, 2.2, 2.1, 2.0],
             "DGS10": [2.0, 1.9, 1.8, 1.7, 1.6, 1.5],
+            "DBAA": [5.0, 4.9, 4.8, 4.7, 4.6, 4.5],
         },
         index=idx,
     )
