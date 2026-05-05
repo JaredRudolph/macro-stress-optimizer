@@ -28,7 +28,7 @@ The stress score is a forward-looking risk indicator built from indicators with 
 |---|---|
 | `ICSA` | Initial jobless claims |
 | `DRCCLACBS` | Credit card delinquency rate |
-| `BAMLH0A0HYM2` | ICE BofA HY OAS spread |
+| `BAA_SPREAD` | Moody's Baa-10Y spread (DBAA - DGS10) |
 
 **Market (yfinance)**
 | Ticker | Indicator |
@@ -38,7 +38,7 @@ The stress score is a forward-looking risk indicator built from indicators with 
 | `HG=F` | Copper futures (growth proxy) |
 | `CL=F` | Crude oil futures (rate-of-change; dual stress regime) |
 | `EEM` | Emerging markets ETF |
-| `DX=F` | DXY dollar index |
+| `DX-Y.NYB` | DXY dollar index |
 
 ## Architecture
 
