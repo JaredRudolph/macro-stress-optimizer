@@ -95,7 +95,7 @@ Outputs:
 
 ## Results
 
-On 5,000+ trading days (2006-2026), SLSQP improves mean CV test AUC from **0.838** (equal weights) to **0.853** (optimized, alpha=3.0) on a 5-fold time series split. The improvement is intentionally modest — L2 regularization toward equal weights prevents overfitting to specific stress regimes on a single 20-year timeline with sparse drawdown events (~26% of trading days). The optimized weights are descriptive: they reflect which indicators historically led SPY drawdowns, not a forward-looking signal.
+On 5,000+ trading days (2006-2026), SLSQP improves mean CV test AUC from **0.838** (equal weights) to **0.853** (optimized, alpha=3.0) on a 5-fold time series split. The improvement is intentionally modest, as L2 regularization toward equal weights prevents overfitting to specific stress regimes on a single 20-year timeline with sparse drawdown events (~26% of trading days). The optimized weights are descriptive: they reflect which indicators historically led SPY drawdowns, not a forward-looking signal.
 
 ## Notebooks
 
